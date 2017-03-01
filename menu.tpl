@@ -18,21 +18,17 @@
         <li>
             <a href="#doc-api-detail">API detail</a>
         </li>
-        {{ range .Folders }}
+        {{ range .Folders }} {{ with $folder := . }}
         <li>
-            <a href="#folder-{{ slugify .Name }}">{{ .Name }}</a>
+            <a href="#folder-{{ slugify $folder.Name }}">{{ $folder.Name }}</a>
             <ul>
-                {{ range .Order }}
-
-                {{ with $req := findRequest $.Requests . }}
+                {{ range $folder.Order }} {{ with $req := findRequest $.Requests . }}
                 <li>
-                    <a href="#request-{{ slugify $req.Name }}">{{ $req.Name }}</a>
+                    <a href="#request-{{ slugify $folder.Name }}-{{ slugify $req.Name }}">{{ $req.Name }}</a>
                 </li>
-                {{ end }}
-
-                {{ end }}
+                {{ end }} {{ end }}
             </ul>
         </li>
-        {{ end }}
+        {{ end }} {{ end }}
     </ul>
 </div>

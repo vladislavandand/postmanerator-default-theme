@@ -62,23 +62,23 @@
                     <a href="#doc-api-detail"><i class="glyphicon glyphicon-link"></i></a>
                 </h2>
 
-                {{ range .Folders }}
+                {{ range .Folders }} {{ with $folder := . }}
                 <div class="endpoints-group">
-                    <h3 id="folder-{{ slugify .Name }}">
-                        {{ .Name }}
-                        <a href="#folder-{{ slugify .Name }}"><i class="glyphicon glyphicon-link"></i></a>
+                    <h3 id="folder-{{ slugify $folder.Name }}">
+                        {{ $folder.Name }}
+                        <a href="#folder-{{ slugify $folder.Name }}"><i class="glyphicon glyphicon-link"></i></a>
                     </h3>
 
-                    <div>{{ markdown .Description }}</div>
+                    <div>{{ markdown $folder.Description }}</div>
 
-                    {{ range .Order }}
+                    {{ range $folder.Order }}
 
                         {{ with $req := findRequest $.Requests . }}
                         <div class="request">
 
-                            <h4 id="request-{{ slugify $req.Name }}">
+                            <h4 id="request-{{ slugify $folder.Name }}-{{ slugify $req.Name }}">
                                 {{ $req.Name }}
-                                <a href="#request-{{ slugify $req.Name }}"><i class="glyphicon glyphicon-link"></i></a>
+                                <a href="#request-{{ slugify $folder.Name }}-{{ slugify $req.Name }}"><i class="glyphicon glyphicon-link"></i></a>
                             </h4>
 
                             <div>{{ markdown $req.Description }}</div>
@@ -142,7 +142,7 @@
                     {{ end }}
 
                 </div>
-                {{ end }}
+                {{ end }} {{ end }}
             </div>
         </div>
     </div>
