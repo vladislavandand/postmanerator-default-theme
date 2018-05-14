@@ -76,15 +76,17 @@
                         <a href="#request-{{ slugify $req.Name }}"><i class="glyphicon glyphicon-link"></i></a>
                     </h3>
 
-                    <div>{{ markdown $req.Description }}</div>
-
                     <div>
                         <ul class="nav nav-tabs" role="tablist">
-                            <li role="presentation" class="active"><a href="#request-{{ slugify $req.Name }}-example-curl" data-toggle="tab">Curl</a></li>
+                            <li role="presentation" class="active"><a href="#request-{{ slugify $req.Name }}-desc" data-toggle="tab">Описание</a></li>
+                            <li role="presentation"><a href="#request-{{ slugify $req.Name }}-example-curl" data-toggle="tab">Curl</a></li>
                             <li role="presentation"><a href="#request-{{ slugify $req.Name }}-example-http" data-toggle="tab">HTTP</a></li>
                         </ul>
                         <div class="tab-content">
-                            <div class="tab-pane active" id="request-{{ slugify $req.Name }}-example-curl">
+                            <div class="tab-pane active" id="request-{{ slugify $req.Name }}-desc">
+                                <div> {{ markdown $req.Description }} </div>
+                            </div>
+                            <div class="tab-pane" id="request-{{ slugify $req.Name }}-example-curl">
                                 <pre><code class="hljs curl">{{ curlSnippet $req }}</code></pre>
                             </div>
                             <div class="tab-pane" id="request-{{ slugify $req.Name }}-example-http">
@@ -154,15 +156,17 @@
                             <a href="#request-{{ slugify $folder.Name }}-{{ slugify $req.Name }}"><i class="glyphicon glyphicon-link"></i></a>
                         </h4>
 
-                        <div>{{ markdown $req.Description }}</div>
-
                         <div>
                             <ul class="nav nav-tabs" role="tablist">
-                                <li role="presentation" class="active"><a href="#request-{{ slugify $folder.Name }}-{{ slugify $req.Name }}-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation" class="active"><a href="#request-{{ slugify $folder.Name }}-{{ slugify $req.Name }}-desc" data-toggle="tab">Описание</a></li>
+                                <li role="presentation"><a href="#request-{{ slugify $folder.Name }}-{{ slugify $req.Name }}-example-curl" data-toggle="tab">Curl</a></li>
                                 <li role="presentation"><a href="#request-{{ slugify $folder.Name }}-{{ slugify $req.Name }}-example-http" data-toggle="tab">HTTP</a></li>
                             </ul>
                             <div class="tab-content">
-                                <div class="tab-pane active" id="request-{{ slugify $folder.Name }}-{{ slugify $req.Name }}-example-curl">
+                                <div class="tab-pane active" id="request-{{ slugify $folder.Name }}-{{ slugify $req.Name }}-desc">
+                                    <div>{{ markdown $req.Description }} </div>
+                                </div>
+                                <div class="tab-pane" id="request-{{ slugify $folder.Name }}-{{ slugify $req.Name }}-example-curl">
                                     <pre><code class="hljs curl">{{ curlSnippet $req }}</code></pre>
                                 </div>
                                 <div class="tab-pane" id="request-{{ slugify $folder.Name }}-{{ slugify $req.Name }}-example-http">
